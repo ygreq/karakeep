@@ -85,9 +85,6 @@ export default function BookmarkSavedPage() {
         </div>
       </div>
       <hr />
-      <p className="text-lg">Notes</p>
-      <NoteEditor bookmarkId={bookmarkId} />
-      <hr />
       <p className="text-lg">Tags</p>
       <TagList bookmarkId={bookmarkId} />
       <TagsSelector bookmarkId={bookmarkId} />
@@ -95,6 +92,9 @@ export default function BookmarkSavedPage() {
       <p className="text-lg">Lists</p>
       <BookmarkLists bookmarkId={bookmarkId} />
       <ListsSelector bookmarkId={bookmarkId} />
+      <hr />
+      <p className="text-lg">Notes</p>
+      <NoteEditor bookmarkId={bookmarkId} />
     </div>
   );
 }
