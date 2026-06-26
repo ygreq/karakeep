@@ -13,6 +13,9 @@ export default defineConfig({
       browser: process.env.VITE_BUILD_FIREFOX ? "firefox" : "chrome",
     }),
   ],
+  resolve: {
+    dedupe: ["react", "react-dom"],
+  },
   server: {
     cors: {
       origin: [/chrome-extension:\/\//],
