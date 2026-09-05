@@ -30,7 +30,7 @@ export function TagsSelector({ bookmarkId }: { bookmarkId: string }) {
   const existingTagIds = new Set(bookmark?.tags.map((t) => t.id) ?? []);
 
   const [input, setInput] = React.useState("");
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(true);
   const currentlyUpdating = useSet<string>();
 
   const { mutate } = useUpdateBookmarkTags({
@@ -59,6 +59,7 @@ export function TagsSelector({ bookmarkId }: { bookmarkId: string }) {
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
         <Button
+          autoFocus
           variant="outline"
           role="combobox"
           aria-expanded={open}

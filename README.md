@@ -56,6 +56,39 @@ Karakeep (previously Hoarder) is a self-hostable bookmark-everything app with a 
 - [Security Considerations](https://docs.karakeep.app/security-considerations)
 - [Development](https://docs.karakeep.app/Development/setup)
 
+## Browser Extension
+
+### Installing from Source (Developer Mode)
+
+To build and load the Karakeep browser extension from source:
+
+#### 1. Build the Extension
+From the repository root:
+```bash
+pnpm --filter @karakeep/browser-extension build
+```
+This compiles the extension files into `apps/browser-extension/dist/`.
+
+#### 2. Install in Chrome / Brave / Edge / Chromium
+1. Open your browser's Extensions page:
+   - **Chrome**: `chrome://extensions`
+   - **Brave**: `brave://extensions`
+   - **Edge**: `edge://extensions`
+2. Enable **Developer mode** using the toggle in the top-right corner.
+3. Click **Load unpacked** in the top-left corner.
+4. In the folder picker dialog, select the `apps/browser-extension/dist` directory.
+5. *(Optional)* After making code changes and rebuilding, click the **Reload** (🔄) icon on the Karakeep extension card.
+
+#### 3. Install in Firefox
+1. Navigate to `about:debugging#/runtime/this-firefox` in the address bar.
+2. Click **Load Temporary Add-on...**.
+3. Select the `apps/browser-extension/dist/manifest.json` file.
+
+#### 4. Configure the Extension
+1. Pin the **Karakeep** extension to your browser toolbar.
+2. Click the extension icon and enter your Karakeep server address (e.g. `http://localhost:3000` or your remote domain) and API key.
+
+
 ## Demo
 
 You can access the demo at [https://try.karakeep.app](https://try.karakeep.app). Login with the following creds:
