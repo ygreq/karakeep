@@ -11,6 +11,7 @@ import {
 import { NEW_BOOKMARK_REQUEST_KEY_NAME } from "./background/protocol";
 import { Button } from "./components/ui/button";
 import { Input } from "./components/ui/input";
+import { Switch } from "./components/ui/switch";
 import { Textarea } from "./components/ui/textarea";
 import Spinner from "./Spinner";
 import { hasHostPermission } from "./utils/permissions";
@@ -37,6 +38,7 @@ export default function SavePage() {
   const [currentTabUrl, setCurrentTabUrl] = useState<string | undefined>(
     undefined,
   );
+  const [showNotes, setShowNotes] = useState(false);
 
   const {
     data,
@@ -264,19 +266,24 @@ export default function SavePage() {
               </div>
             )}
             <div className="flex flex-col gap-2">
-              <label className="text-xs font-medium text-muted-foreground">
-                Notes
-              </label>
-              <Textarea
-                value={pendingBookmark.note ?? ""}
-                onChange={(e) =>
-                  setPendingBookmark((prev) =>
-                    prev ? { ...prev, note: e.target.value } : prev,
-                  )
-                }
-                placeholder="Add notes..."
-                className="h-20 resize-none"
-              />
+              <div className="flex items-center justify-between gap-2">
+                <label className="text-xs font-medium text-muted-foreground">
+                  Notes
+                </label>
+                <Switch checked={showNotes} onCheckedChange={setShowNotes} />
+              </div>
+              {showNotes && (
+                <Textarea
+                  value={pendingBookmark.note ?? ""}
+                  onChange={(e) =>
+                    setPendingBookmark((prev) =>
+                      prev ? { ...prev, note: e.target.value } : prev,
+                    )
+                  }
+                  placeholder="Add notes..."
+                  className="h-20 resize-none"
+                />
+              )}
             </div>
             <Button onClick={handleManualSave} className="w-full">
               Save Bookmark

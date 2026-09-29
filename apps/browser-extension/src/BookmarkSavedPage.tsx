@@ -10,6 +10,7 @@ import { NoteEditor } from "./components/NoteEditor";
 import TagList from "./components/TagList";
 import { TagsSelector } from "./components/TagsSelector";
 import { Button, buttonVariants } from "./components/ui/button";
+import { Switch } from "./components/ui/switch";
 import Spinner from "./Spinner";
 import { cn } from "./utils/css";
 import usePluginSettings from "./utils/settings";
@@ -19,6 +20,7 @@ export default function BookmarkSavedPage() {
   const { bookmarkId } = useParams();
   const navigate = useNavigate();
   const [error, setError] = useState("");
+  const [showNotes, setShowNotes] = useState(false);
 
   const { mutate: deleteBookmark, isPending } = useDeleteBookmark({
     onSuccess: async () => {
@@ -93,8 +95,11 @@ export default function BookmarkSavedPage() {
       <BookmarkLists bookmarkId={bookmarkId} />
       <ListsSelector bookmarkId={bookmarkId} />
       <hr />
-      <p className="text-lg">Notes</p>
-      <NoteEditor bookmarkId={bookmarkId} />
+      <div className="flex items-center justify-between gap-2">
+        <p className="text-lg">Notes</p>
+        <Switch checked={showNotes} onCheckedChange={setShowNotes} />
+      </div>
+      {showNotes && <NoteEditor bookmarkId={bookmarkId} />}
     </div>
   );
 }
